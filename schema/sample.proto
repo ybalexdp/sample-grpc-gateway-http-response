@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package pb;
+
+import "google/api/annotations.proto";
+
+service Sample {
+	rpc GetSample (GetSampleRequest) returns (GetSampleResponse) {
+		option (google.api.http) = {
+			get: "/v1/sample/{id}"
+		};
+	};
+}
+
+message GetSampleRequest {
+  int64 id = 1;
+}
+
+message GetSampleResponse {
+	int64 id = 1;
+	string name = 2;
+}
