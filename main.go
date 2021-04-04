@@ -19,6 +19,7 @@ func main() {
 	server := grpc.NewServer()
 
 	s := &app.SampleService{}
+
 	pb.RegisterSampleServer(server, s)
 	server.Serve(listenPort)
 }

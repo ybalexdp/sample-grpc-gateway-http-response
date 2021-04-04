@@ -13,7 +13,7 @@ import (
 )
 
 func run() error {
-	endpoint := flag.String("endpoint", "api:2007", "API Service")
+	endpoint := flag.String("endpoint", ":2007", "API Service")
 
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)

@@ -3,9 +3,11 @@ package application
 import (
 	"context"
 
-	domain "sample-grpc-gateway-http-response/service/domain"
 	model "sample-grpc-gateway-http-response/service/model"
 	pb "sample-grpc-gateway-http-response/service/pb"
+
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 type SampleService struct {
@@ -25,7 +27,7 @@ func (s *SampleService) GetSample(ctx context.Context, params *pb.GetSampleReque
 		return nil, err
 	}
 	if data == nil {
-		return nil, domain.Errors.SampleNotFound
+		return nil, status.New(codes.NotFound, "sample not found").Err()
 	}
 	return &pb.GetSampleResponse{
 		Id:   data.Id,
